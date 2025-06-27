@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function(){
     return view('home', [
@@ -18,18 +19,7 @@ Route::get('/about', function () {
         "image" => "avatar.png"
     ]);
 });
+Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/blog', function () {
-    return view('posts', [
-        "title" => "Posts",
-        "posts" => Post::all()
-    ]);
-});
 // Halaman untuk single post
-Route::get('posts/{slug}', function ($slug) {
-
-    return view('post', [
-        "title" => "Single Post",
-         "post" => Post::find($slug)
-    ]);
-});
+Route::get('posts/{slug}', [PostController::class, 'show']);
