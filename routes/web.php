@@ -19,7 +19,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', function() {
+    return view('dashboard.index', [
+        'title' => 'Dashboard',
+        'active' => 'dashboard'
+    ]);
+})->middleware('auth');
 
 Route::get('/about', function () {
     return view('about', [
