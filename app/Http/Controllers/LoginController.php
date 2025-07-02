@@ -28,7 +28,7 @@ class LoginController extends Controller
         }
 
         // Jika gagal login, kembali ke halaman login dengan pesan error
-        return back()->with('loginError', 'Login failed! Please check your credentials.');
+        return back()->with('loginError', 'Login failed!');
     }
 
 }
