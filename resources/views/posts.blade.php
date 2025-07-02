@@ -7,7 +7,14 @@
     <h2>
         <a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a>
     </h2>
-    <p>By: <a href="#" class="text-decoration-none">{{ $post->user->name }}</a>
+    <p>By: 
+        @if($post->user && $post->user->username)
+            <a href="/authors/{{ $post->user->username }}" class="text-decoration-none">{{ $post->user->name }}</a>
+        @elseif($post->user)
+            <span class="text-decoration-none">{{ $post->user->name }}</span>
+        @else
+            <span class="text-muted">Unknown Author</span>
+        @endif
         in 
         @if($post->category)
             <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a>
