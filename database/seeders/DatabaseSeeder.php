@@ -49,9 +49,18 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123')
         ]);
 
+        $catWeb = Category::create([
+            'name' => 'Web Programming',
+            'slug' => 'web-programming'
+        ]);
+        $catPersonal = Category::create([
+            'name' => 'Personal',
+            'slug' => 'personal'
+        ]);
+
         Post::create([
             'title' => 'Judul Pertama',
-            'category_id' => 1,
+            'category_id' => $catWeb->id,
             'user_id' => 1, // adithya
             'slug' => 'judul-pertama',
             'excerpt' => 'Lorem ipsum dolor sit amet pertama.',
@@ -60,7 +69,7 @@ class DatabaseSeeder extends Seeder
 
         Post::create([
             'title' => 'Judul Kedua',
-            'category_id' => 1,
+            'category_id' => $catWeb->id,
             'user_id' => 2, // adit12
             'slug' => 'judul-kedua',
             'excerpt' => 'Lorem ipsum dolor sit amet kedua.',
@@ -69,7 +78,7 @@ class DatabaseSeeder extends Seeder
 
         Post::create([
             'title' => 'Judul Ketiga',
-            'category_id' => 2,
+            'category_id' => $catPersonal->id,
             'user_id' => 4, // budi
             'slug' => 'judul-ketiga',
             'excerpt' => 'Lorem ipsum dolor sit amet ketiga.',
@@ -78,7 +87,7 @@ class DatabaseSeeder extends Seeder
 
         Post::create([
             'title' => 'Judul Keempat',
-            'category_id' => 2,
+            'category_id' => $catPersonal->id,
             'user_id' => 5, // citra
             'slug' => 'judul-keempat',
             'excerpt' => 'Lorem ipsum dolor sit amet keempat.',
@@ -88,14 +97,5 @@ class DatabaseSeeder extends Seeder
         User::factory(3)->create();
 
         Post::factory(20)->create();
-
-        Category::create([
-            'name' => 'Web Programming',
-            'slug' => 'web-programming'
-        ]);
-        Category::create([
-            'name' => 'Personal',
-            'slug' => 'personal'
-        ]);
     }
 }
