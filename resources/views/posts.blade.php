@@ -5,7 +5,7 @@
 
 @if ($posts->count())
     <div class="card mb-3">
-        <img src="https://i.pinimg.com/736x/34/26/03/342603183cf59809a35dc4eae330fadb.jpg" class="card-img-top" alt="{{ $posts[0]->category ? $posts[0]->category->name : 'No Category' }}" style="width: 100%; height: 500px; object-fit: cover; margin: 0 auto; display: block;">
+        <img src="https://i.pinimg.com/736x/34/26/03/342603183cf59809a35dc4eae330fadb.jpg?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}" style="width: 100%; height: 500px; object-fit: cover; margin: 0 auto; display: block;">
         <div class="card-body text-center">
             <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h3>
             <p>
