@@ -8,10 +8,15 @@ class PostController extends Controller
 {
     public function index()
     {
+        $posts = Post::latest();
+        if (request('search')) {
+            $posts->where('title', 'like', '%' . request('search') . '%')
+                  ->orWhere('body', 'like', '%' . request('search') . '%');
+        }
         return view('posts', [
             "title" => "All Posts",
             //'posts' => Post::all()
-            "posts" => Post::latest()->get()
+            "posts" => $posts->get()
         ]);
     }
     public function show(Post $post)
